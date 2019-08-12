@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 
 /** TODO - we want { name, rarity, imgUrl, types } */
+/** TODO - Also, remove Alolan pokemon */
 import pokemonJSON from "./json/pokemon-v1.json";
 import "./App.css";
 
@@ -75,19 +76,19 @@ function PokemonList({ pokemonResults }) {
       }}
     >
       {pokemonResults.map((pokemon, index) => {
-        if (typeof pokemon === "undefined") {
-          return null;
-        }
+        const { name, rarity } = pokemon;
+        const rarityClassName = rarity.replace(" ", "").toLowerCase();
+        const key = `${index}-${name}`;
 
-        const { name } = pokemon;
         return (
           <span
-            key={`${index}-${name}`}
+            className={rarityClassName}
+            key={key}
             style={{
               padding: "20px"
             }}
           >
-            {name}
+            {name} - {rarity}
           </span>
         );
       })}
