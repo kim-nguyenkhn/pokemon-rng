@@ -1,0 +1,24 @@
+.pokeshake{
+    animation-name: shake;
+    animation-duration: 0.8s;
+    animation-iteration-count: infinite;
+    transform-origin: center bottom;
+    transition-timing-function: cubic-bezier(.17,.67,.83,.67);
+}
+
+.poketwitch{
+
+}
+
+@keyframes shake{
+    0% {
+        transform: rotate(5deg);
+    }
+    50% {
+        transform: rotate(-5deg);
+    }
+    100% {
+        transform: rotate(5deg);
+        
+    }
+}
