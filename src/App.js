@@ -1,24 +1,96 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect, useState } from "react";
+
+/** TODO - we want { name, rarity, imgUrl, types } */
+import pokemonJSON from "./json/pokemon-v1.json";
+import "./App.css";
 
 function App() {
+  const [results, setResults] = useState([]);
+
+  /**
+   * Convenience function to return a random pokemon from the JSON.
+   */
+  const getRandomPokemon = () => {
+    const NUMBER_OF_POKEMON = 151;
+    let pokemonNumber = Math.floor(Math.random() * NUMBER_OF_POKEMON) + 1;
+    return pokemonJSON[pokemonNumber];
+  };
+
+  /**
+   * Resets the results & retrieves a new set of random pokemon.
+   */
+  const retrievePokemon = () => {
+    const RESULTS_COUNT = 100;
+    const temp = [];
+
+    setResults([]);
+    for (let i = 0; i < RESULTS_COUNT; i++) {
+      const pokemon = getRandomPokemon();
+      temp.push(pokemon);
+    }
+    setResults(currentResults => {
+      return [...currentResults, ...temp];
+    });
+    console.log(results);
+  };
+
+  /**
+   * Click handler to generate results.
+   */
+  const handleOnClick = () => {
+    retrievePokemon();
+  };
+
+  /**
+   * Initialize the results with some pokemon.
+   */
+  useEffect(() => {
+    retrievePokemon();
+  }, []);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <div>
+        <h2>Pokeball</h2>
+        <button onClick={handleOnClick}>Generate 100 results</button>
+
+        <div>
+          <h2>Results</h2>
+          <PokemonList pokemonResults={results} />
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function PokemonList({ pokemonResults }) {
+  if (pokemonResults.length <= 0) {
+    return null;
+  }
+  return (
+    <div
+      style={{
+        display: "flex",
+        flexWrap: "wrap"
+      }}
+    >
+      {pokemonResults.map((pokemon, index) => {
+        if (typeof pokemon === "undefined") {
+          return null;
+        }
+
+        const { name } = pokemon;
+        return (
+          <span
+            key={`${index}-${name}`}
+            style={{
+              padding: "20px"
+            }}
+          >
+            {name}
+          </span>
+        );
+      })}
     </div>
   );
 }
