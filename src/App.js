@@ -4,6 +4,7 @@ import React, { useEffect, useState } from "react";
 /** TODO - Also, remove Alolan pokemon */
 import pokemonJSON from "./json/pokemon-v1.json";
 import "./App.css";
+import { PokeAnim } from "./components/PokeAnim";
 
 function App() {
   const [results, setResults] = useState([]);
@@ -54,12 +55,13 @@ function App() {
       <div>
         <h2>Pokeball</h2>
         <button onClick={handleOnClick}>Generate 100 results</button>
-
+        <PokeAnim></PokeAnim>
         <div>
           <h2>Results</h2>
           <PokemonList pokemonResults={results} />
         </div>
       </div>
+      
     </div>
   );
 }
