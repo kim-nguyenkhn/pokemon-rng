@@ -11,7 +11,7 @@ export function PokeAnim() {
 
         img.classList.remove('poketwitch');
         img.classList.add('pokeshake');
-        pulseComponent.style.animation = 'pulse 0.8s infinite, shake 0.8s infinite';
+        pulseComponent.style.animation = 'pulse 0.4s infinite, shake 0.1s infinite';
         setTimeout(() => {
             img.classList = '';
             img.src = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/4.png';
@@ -19,7 +19,7 @@ export function PokeAnim() {
             pulseComponent.style.display = 'none';
             img.style.height = '400px';
             img.style.width = 'auto';
-        }, 2400);
+        }, 1400);
     };
 
     return (
