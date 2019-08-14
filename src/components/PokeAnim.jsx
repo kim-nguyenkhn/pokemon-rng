@@ -1,8 +1,7 @@
 import React, { useEffect } from 'react';
 import './styles.css';
-
-const unopenedPokeball = 'https://i.imgur.com/5oiq2uX.png';
-const openedPokeball = 'https://i.imgur.com/ilZCT7n.png';
+import pokeballClosed from '../img/pokeball-closed-cropped.png';
+import openedPokeball from '../img/pokeball-open-cropped.png';
 
 export function PokeAnim() {
     const handleClick = e => {
@@ -15,9 +14,11 @@ export function PokeAnim() {
         pulseComponent.style.animation = 'pulse 0.8s infinite, shake 0.8s infinite';
         setTimeout(() => {
             img.classList = '';
-            img.src = openedPokeball;
+            img.src = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/4.png';
             flashOverlay.classList.add('flash');
             pulseComponent.style.display = 'none';
+            img.style.height = '400px';
+            img.style.width = 'auto';
         }, 2400);
     };
 
@@ -27,7 +28,7 @@ export function PokeAnim() {
                 <div style={{ position: 'relative' }}>
                     <img
                         id="pokeball"
-                        src={unopenedPokeball}
+                        src={pokeballClosed}
                         className="poketwitch"
                         onClick={handleClick}
                     />

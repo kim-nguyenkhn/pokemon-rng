@@ -19,7 +19,7 @@
 
 #pokeball {
     position: relative;
-    height: 150px;
+    height: 75px;
     width: auto;
     z-index: 10;
     cursor: pointer;
@@ -49,14 +49,13 @@
 
 @keyframes shake{
     0% {
-        transform: rotate(15deg);
+        transform: rotate(10deg);
     }
-    50% {
-        transform: rotate(-15deg);
+    50%{
+        transform: rotate(-10deg);
     }
-    100% {
-        transform: rotate(15deg);
-        
+    100%{
+        transform: rotate(10deg);  
     }
 }
 @keyframes twitch{
@@ -107,8 +106,7 @@
   .pulse-div{
       position: absolute;
       z-index:3;
-      bottom: 15%;
-      left: 24%;
-      height: 65px;
-      width: 65px;
+      bottom: 0; 
+      height: 90%;
+      width: 100%;
   }
